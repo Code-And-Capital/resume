@@ -1,0 +1,8 @@
+pandas
+matplotlib
+openpyxl
+lxml
+xlrd
+black
+black[jupyter]
+tqdm
