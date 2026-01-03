@@ -11,30 +11,25 @@
   "skills": [
     {
       "category": "Programming",
-      "items": ["python", "Java", "C++"]
+      "items": ["Python", "Java", "C++", "JavaScript", "Go", "Rust"]
     },
     {
-      "category": "Data",
-      "items": ["Excel", "SQL", "Tableau"]
+      "category": "Data \\& Analytics",
+      "items": ["Excel (pivot tables wizard)", "SQL", "Tableau", "Power BI", "R"]
+    },
+    {
+      "category": "Creative \\& Misc",
+      "items": ["3D printing", "Creative writing", "Photography", "Improv comedy"]
     }
   ],
 
   "interests": [
     {
-      "items": ["reading", "cycling", "chess"]
+      "items": ["reading speculative fiction novels", "cycling mountain trails at sunrise", "playing competitive chess with a side of strategy podcasts", "urban sketching", "volunteering at animal shelters"]
     }
   ],
 
   "education": [
-    {
-      "school": "Test University",
-      "degree": "BSc",
-      "subject": "Computer Science",
-      "start_year": 2015,
-      "end_year": 2019,
-      "location": "Test City, TC",
-      "bullets": ["Graduated with honors", "Member of CS club"]
-    },
     {
       "school": "Example Institute",
       "degree": "MSc",
@@ -42,44 +37,104 @@
       "start_year": 2019,
       "end_year": 2021,
       "location": "Example City, EC",
-      "bullets": ["Master thesis on AI", "Teaching assistant for ML course"]
+      "bullets": [
+        "Master thesis on advanced AI-driven recommendation systems, incorporating natural language processing and real-time personalization",
+        "Teaching assistant for Machine Learning and Data Visualization courses, creating interactive tutorials and grading 200+ student projects",
+        "Developed a side project predicting local coffee shop popularity using social media sentiment analysis"
+      ]
+    },
+    {
+      "school": "Test University",
+      "degree": "BSc",
+      "subject": "Computer Science",
+      "start_year": 2015,
+      "end_year": 2019,
+      "location": "Test City, TC",
+      "bullets": [
+        "Graduated with honors while juggling a part-time internship and organizing the annual tech hackathon for 300+ participants",
+        "Co-founded the campus CS club and led weekly coding challenges that doubled membership within a year",
+        "Presented research on low-power IoT devices at a national student tech conference"
+      ]
     }
   ],
 
   "professional_experience": [
+    {
+      "company": "Creative Solutions Inc.",
+      "role": "Innovation Specialist",
+      "start_date": "2023-06",
+      "end_date": null,
+      "location": "Remote",
+      "bullets": [
+        "Facilitated design sprints exploring unconventional problem-solving approaches across tech, art, and community engagement",
+        "Prototyped a 'smart plant care' IoT device blending sensors, predictive watering algorithms, and whimsical LED notifications",
+        "Collaborated with marketing and design teams to launch a viral social media campaign highlighting eco-friendly office innovations"
+      ],
+      "tags": ["innovation", "IoT", "creativity", "project management"]
+    },
+    {
+      "company": "ExampleTech",
+      "role": "Data Analyst",
+      "start_date": "2022-01",
+      "end_date": "2023-05",
+      "location": "Example City, EC",
+      "bullets": [
+        "Built interactive dashboards visualizing customer behavior, enabling executive teams to identify new revenue streams and reduce churn by 15%",
+        "Performed deep-dive analyses on market trends, creating predictive models that informed marketing campaigns and product launches",
+        "Introduced gamified analytics challenges within the team, resulting in higher engagement and cross-departmental collaboration"
+      ],
+      "tags": ["sql", "tableau", "analytics", "python"]
+    },
     {
       "company": "TestCorp",
       "role": "Software Engineer",
       "start_date": "2020-01",
       "end_date": "2021-12",
       "location": "Test City, TC",
-      "bullets": ["Developed internal tools", "Improved CI/CD pipeline"],
-      "tags": ["python", "devops"]
-    },
-    {
-      "company": "ExampleTech",
-      "role": "Data Analyst",
-      "start_date": "2022-01",
-      "end_date": null,
-      "location": "Example City, EC",
-      "bullets": ["Built dashboards", "Analyzed customer data trends"],
-      "tags": ["sql", "tableau"]
+      "bullets": [
+        "Developed internal tools that reduced repetitive manual work by 40%, including a clever script that automatically reconciled weekly reports",
+        "Revamped the CI/CD pipeline, cutting deployment time in half and introducing automated rollback for risky updates",
+        "Organized monthly 'Innovation Hour' sessions, encouraging teammates to prototype quirky ideas like a voice-controlled office coffee assistant"
+      ],
+      "tags": ["python", "devops", "automation"]
     }
   ],
 
   "projects": [
     {
+      "name": "Community Garden Tracker",
+      "bullets": [
+        "Created a web app to track plant growth and volunteer hours, gamifying contributions to encourage local engagement",
+        "Integrated real-time weather data and plant health analytics, turning gardening into a playful data science exercise"
+      ],
+      "link": "https://github.com/alicedoe/garden-tracker",
+      "tags": ["javascript", "python", "data visualization", "IoT"]
+    },
+    {
       "name": "Test Project",
-      "bullets": ["Implemented dummy features for testing"],
+      "bullets": [
+        "Implemented dummy features for testing but also added a playful Easter egg game that delighted internal testers",
+        "Documented code in a storytelling style to make onboarding new developers a fun and engaging experience"
+      ],
       "link": "https://github.com/test/project",
-      "tags": ["python", "testing"]
+      "tags": ["python", "testing", "documentation"]
     }
   ],
 
   "certificates": [
     {
+      "name": "Creative Problem Solving Certificate",
+      "bullets": ["Learned techniques for approaching complex problems with unconventional, imaginative solutions"],
+      "link": "https://example.com/creative-cert"
+    },
+    {
+      "name": "Data Visualization Mastery",
+      "bullets": ["Demonstrated expertise in turning raw datasets into compelling visual stories, including interactive dashboards and narrative-driven charts"],
+      "link": "https://example.com/dataviz-cert"
+    },
+    {
       "name": "Test Certification",
-      "bullets": ["Completed dummy training program"],
+      "bullets": ["Completed a dummy training program designed to teach the art of playful automation in professional workflows"],
       "link": "https://example.com/cert"
     }
   ]

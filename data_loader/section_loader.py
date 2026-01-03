@@ -166,7 +166,6 @@ class ExperienceDataSource(SectionDataSource):
         "end_date": (str, type(None)),
         "location": str,
         "bullets": list,
-        "tags": list,
     }
 
     def validate(self, section: Any) -> None:
@@ -202,7 +201,6 @@ class ProjectsDataSource(SectionDataSource):
         "name": str,
         "bullets": list,
         "link": str,
-        "tags": list,
     }
 
     def validate(self, section: Any) -> None:
