@@ -12,6 +12,9 @@ from data_loader.section_loader import (
     HeaderDataSource,
     SkillsDataSource,
     ExperienceDataSource,
+    EducationDataSource,
+    ProjectsDataSource,
+    CertificatesDataSource,
 )
 
 
@@ -53,11 +56,34 @@ class Resume(LateX):
         self.experience_data = ExperienceDataSource(json_source=self.datasource)
         self.experience_sec.add_experiences(self.experience_data.data, select=select)
 
-    def create_resume(self, select_experiences=None):
+    def create_education(self, select):
+        self.education_data = EducationDataSource(json_source=self.datasource)
+        self.education_sec.add_education(self.education_data.data, select=select)
+
+    def create_projects(self, select):
+        self.project_data = ProjectsDataSource(json_source=self.datasource)
+        self.projects_sec.add_projects(self.project_data.data, select=select)
+
+    def create_certificates(self, select):
+        self.certificates_data = CertificatesDataSource(json_source=self.datasource)
+        self.certificates_sec.add_certificates(
+            self.certificates_data.data, select=select
+        )
+
+    def create_resume(
+        self,
+        select_experiences=None,
+        select_education=None,
+        select_projects=None,
+        select_certificates=None,
+    ):
         self.create_document_head()
         self.create_header()
         self.begin_document()
         self.create_skills()
         self.create_experiences(select=select_experiences)
+        self.create_education(select=select_education)
+        self.create_projects(select=select_projects)
+        self.create_certificates(select=select_certificates)
         self.end_document()
         self.create_pdf()
