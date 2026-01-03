@@ -3,6 +3,10 @@ tim.json
 nate.json
 mia.json
 
+# outputs
+resume.pdf
+resume.tex
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

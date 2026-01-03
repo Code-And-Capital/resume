@@ -10,7 +10,7 @@ from data_loader.section_loader import (
     ProjectsDataSource,
     CertificatesDataSource,
     InterestsDataSource,
-    SectionDataSource
+    SectionDataSource,
 )
 
 # -----------------------------
@@ -24,7 +24,7 @@ VALID_JSON = {
         "email": "alex.johnson@example.com",
         "phone": "+1-212-555-7890",
         "location": "New York, NY",
-        "linkedin": "https://linkedin.com/in/alexjohnson"
+        "linkedin": "https://linkedin.com/in/alexjohnson",
     },
     "education": [
         {
@@ -34,7 +34,7 @@ VALID_JSON = {
             "start_year": 2015,
             "end_year": 2019,
             "location": "New York, NY",
-            "bullets": ["Graduated with honors", "President of Coding Club"]
+            "bullets": ["Graduated with honors", "President of Coding Club"],
         },
         {
             "school": "MIT",
@@ -43,8 +43,8 @@ VALID_JSON = {
             "start_year": 2020,
             "end_year": 2022,
             "location": "Cambridge, MA",
-            "bullets": ["Thesis on NLP", "GPA: 4.0"]
-        }
+            "bullets": ["Thesis on NLP", "GPA: 4.0"],
+        },
     ],
     "professional_experience": [
         {
@@ -54,7 +54,7 @@ VALID_JSON = {
             "end_date": None,
             "location": "New York, NY",
             "bullets": ["Built ETL pipelines", "Optimized SQL queries"],
-            "tags": ["python", "sql", "aws"]
+            "tags": ["python", "sql", "aws"],
         },
         {
             "company": "AnalyticsHub",
@@ -62,40 +62,50 @@ VALID_JSON = {
             "start_date": "2019-08",
             "end_date": "2022-06",
             "location": "Boston, MA",
-            "bullets": ["Performed exploratory data analysis", "Created dashboards in Tableau"],
-            "tags": ["tableau", "excel", "python"]
-        }
+            "bullets": [
+                "Performed exploratory data analysis",
+                "Created dashboards in Tableau",
+            ],
+            "tags": ["tableau", "excel", "python"],
+        },
     ],
     "skills": [
         {"category": "Programming", "items": ["python", "java", "sql"]},
-        {"category": "Data Tools", "items": ["tableau", "excel", "powerbi"]}
+        {"category": "Data Tools", "items": ["tableau", "excel", "powerbi"]},
     ],
     "projects": [
         {
             "name": "Sales Forecast Model",
             "bullets": ["Implemented ARIMA and Prophet forecasting models"],
             "link": "https://github.com/alexjohnson/sales-forecast",
-            "tags": ["python", "ml", "forecasting"]
+            "tags": ["python", "ml", "forecasting"],
         },
         {
             "name": "Customer Segmentation",
             "bullets": ["Applied k-means clustering to segment customer base"],
             "link": "https://github.com/alexjohnson/customer-segmentation",
-            "tags": ["python", "ml", "analytics"]
-        }
+            "tags": ["python", "ml", "analytics"],
+        },
     ],
     "certificates": [
-        {"name": "AWS Certified Data Analytics", "bullets": ["Demonstrated AWS data pipeline skills"], "link": "https://www.credly.com/badge/aws-data"},
-        {"name": "Tableau Desktop Specialist", "bullets": ["Proficiency in Tableau Desktop"], "link": "https://www.credly.com/badge/tableau-desktop"}
+        {
+            "name": "AWS Certified Data Analytics",
+            "bullets": ["Demonstrated AWS data pipeline skills"],
+            "link": "https://www.credly.com/badge/aws-data",
+        },
+        {
+            "name": "Tableau Desktop Specialist",
+            "bullets": ["Proficiency in Tableau Desktop"],
+            "link": "https://www.credly.com/badge/tableau-desktop",
+        },
     ],
-    "interests": [
-        {"items": ["hiking", "photography", "chess"]}
-    ]
+    "interests": [{"items": ["hiking", "photography", "chess"]}],
 }
 
 # -----------------------------
 # Fixtures
 # -----------------------------
+
 
 @pytest.fixture
 def tmp_json(tmp_path: Path):
@@ -103,30 +113,36 @@ def tmp_json(tmp_path: Path):
     path.write_text(json.dumps(VALID_JSON), encoding="utf-8")
     return path
 
+
 @pytest.fixture
 def json_source(tmp_json):
     ds = JSONDataSource(tmp_json)
     ds.load()
     return ds
 
+
 # -----------------------------
 # Section DataSource Tests
 # -----------------------------
+
 
 def test_header_valid(json_source):
     header = HeaderDataSource(json_source).data
     assert header["first_name"] == "Alex"
     assert header["linkedin"].startswith("http")
 
+
 def test_education_valid(json_source):
     edu = EducationDataSource(json_source).data
     assert isinstance(edu, list)
     assert edu[0]["school"] == "NY University"
 
+
 def test_experience_valid(json_source):
     exp = ExperienceDataSource(json_source).data
     assert isinstance(exp, list)
     assert exp[0]["company"] == "DataCorp"
+
 
 def test_skills_valid(json_source):
     skills = SkillsDataSource(json_source).data
@@ -134,30 +150,36 @@ def test_skills_valid(json_source):
     categories = [s["category"] for s in skills]
     assert "Programming" in categories
 
+
 def test_projects_valid(json_source):
     projects = ProjectsDataSource(json_source).data
     assert isinstance(projects, list)
     assert projects[0]["name"] == "Sales Forecast Model"
+
 
 def test_certificates_valid(json_source):
     certs = CertificatesDataSource(json_source).data
     assert isinstance(certs, list)
     assert certs[0]["name"] == "AWS Certified Data Analytics"
 
+
 def test_interests_valid(json_source):
     interests = InterestsDataSource(json_source).data
     assert isinstance(interests, list)
     assert "hiking" in interests[0]["items"]
 
+
 # -----------------------------
 # Validation / Error Tests
 # -----------------------------
+
 
 def test_missing_section_raises(json_source):
     ds = SectionDataSource(json_source)
     ds.section_key = "nonexistent"
     with pytest.raises(KeyError):
         _ = ds.data
+
 
 def test_header_missing_field(tmp_path):
     data = VALID_JSON.copy()
@@ -170,6 +192,7 @@ def test_header_missing_field(tmp_path):
     with pytest.raises(KeyError):
         _ = header_ds.data
 
+
 def test_header_wrong_type(tmp_path):
     data = VALID_JSON.copy()
     data["header"]["first_name"] = 123
@@ -180,6 +203,7 @@ def test_header_wrong_type(tmp_path):
     header_ds = HeaderDataSource(ds)
     with pytest.raises(TypeError):
         _ = header_ds.data
+
 
 def test_education_not_list(tmp_path):
     data = VALID_JSON.copy()
@@ -192,9 +216,11 @@ def test_education_not_list(tmp_path):
     with pytest.raises(TypeError):
         _ = edu_ds.data
 
+
 def test_experience_end_date_nullable(json_source):
     exp = ExperienceDataSource(json_source).data
     assert exp[0]["end_date"] is None
+
 
 def test_skills_missing_category(tmp_path):
     data = VALID_JSON.copy()

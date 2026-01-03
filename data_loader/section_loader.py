@@ -7,6 +7,7 @@ from data_loader.json_loader import JSONDataSource
 # Validation Helpers
 # -----------------------------
 
+
 def _require_mapping(obj: Any, *, context: str) -> Mapping[str, Any]:
     if not isinstance(obj, Mapping):
         raise TypeError(f"{context} must be an object")
@@ -29,12 +30,15 @@ def _validate_required_fields(
         if field not in obj:
             raise KeyError(f"{context} missing required field '{field}'")
         if not isinstance(obj[field], expected_type):
-            raise TypeError(f"{context} field '{field}' must be of type {expected_type}")
+            raise TypeError(
+                f"{context} field '{field}' must be of type {expected_type}"
+            )
 
 
 # -----------------------------
 # Base Section Data Source
 # -----------------------------
+
 
 class SectionDataSource:
     """
@@ -107,6 +111,7 @@ class SectionDataSource:
 # Section Implementations
 # -----------------------------
 
+
 class HeaderDataSource(SectionDataSource):
     """Data source for the resume header section."""
 
@@ -145,7 +150,9 @@ class EducationDataSource(SectionDataSource):
         entries = _require_list(section, context="Education")
         for entry in entries:
             edu = _require_mapping(entry, context="Education entry")
-            _validate_required_fields(edu, self.REQUIRED_FIELDS, context="Education entry")
+            _validate_required_fields(
+                edu, self.REQUIRED_FIELDS, context="Education entry"
+            )
 
 
 class ExperienceDataSource(SectionDataSource):
@@ -167,7 +174,9 @@ class ExperienceDataSource(SectionDataSource):
         entries = _require_list(section, context="Professional experience")
         for entry in entries:
             exp = _require_mapping(entry, context="Experience entry")
-            _validate_required_fields(exp, self.REQUIRED_FIELDS, context="Experience entry")
+            _validate_required_fields(
+                exp, self.REQUIRED_FIELDS, context="Experience entry"
+            )
 
 
 class SkillsDataSource(SectionDataSource):
@@ -201,7 +210,9 @@ class ProjectsDataSource(SectionDataSource):
         entries = _require_list(section, context="Projects")
         for entry in entries:
             proj = _require_mapping(entry, context="Project entry")
-            _validate_required_fields(proj, self.REQUIRED_FIELDS, context="Project entry")
+            _validate_required_fields(
+                proj, self.REQUIRED_FIELDS, context="Project entry"
+            )
 
 
 class CertificatesDataSource(SectionDataSource):
@@ -219,7 +230,9 @@ class CertificatesDataSource(SectionDataSource):
         entries = _require_list(section, context="Certificates")
         for entry in entries:
             cert = _require_mapping(entry, context="Certificate entry")
-            _validate_required_fields(cert, self.REQUIRED_FIELDS, context="Certificate entry")
+            _validate_required_fields(
+                cert, self.REQUIRED_FIELDS, context="Certificate entry"
+            )
 
 
 class InterestsDataSource(SectionDataSource):

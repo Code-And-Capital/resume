@@ -50,7 +50,9 @@ class JSONDataSource:
             If the data has not been loaded yet.
         """
         if self._data is None:
-            raise RuntimeError("JSON data has not been loaded yet. Call `.load()` first.")
+            raise RuntimeError(
+                "JSON data has not been loaded yet. Call `.load()` first."
+            )
         return self._data
 
     def load(self) -> Dict[str, Any]:
