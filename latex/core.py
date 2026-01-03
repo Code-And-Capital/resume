@@ -1,6 +1,7 @@
 import os
 import pathlib
 from typing import List
+import shutil
 
 
 class LateX:
@@ -47,15 +48,32 @@ class LateX:
     # -----------------------------
     # Document structure methods
     # -----------------------------
+
     def load_template(self, template: str) -> None:
         """
         Set document class using a template (.cls file).
 
+        The template is copied from the templates folder into the output
+        directory so LaTeX can resolve it during compilation.
+
         Parameters
         ----------
         template : str
-            Name of the LaTeX document class
+            Name of the LaTeX document class (without .cls)
         """
+        cls_name = f"{template}.cls"
+        src = self.templates_folder / cls_name
+        dst = self.output_folder / cls_name
+
+        if not src.exists():
+            raise FileNotFoundError(
+                f"Template '{cls_name}' not found in {self.templates_folder}"
+            )
+
+        # Copy template if not already present or if updated
+        if not dst.exists() or src.stat().st_mtime > dst.stat().st_mtime:
+            shutil.copy(src, dst)
+
         self.tex += f"\\documentclass{{{template}}}\n"
 
     def add_packages(self, packages: List[str]) -> None:
@@ -195,7 +213,7 @@ class LateX:
         os.chdir(cwd)
 
         if clean_aux:
-            for ext in [".aux", ".log", ".out"]:
+            for ext in [".aux", ".log", ".out", ".cls"]:
                 path = self.output_folder / f"{self.tex_name}{ext}"
                 if path.exists():
                     path.unlink()

@@ -1,0 +1,86 @@
+{
+  "header": {
+    "first_name": "Alice",
+    "last_name": "Doe",
+    "phone": "+1-123-456-7890",
+    "location": "Test City, TC",
+    "email": "alice.doe@example.com",
+    "linkedin": "https://www.linkedin.com/in/alicedoe/"
+  },
+
+  "skills": [
+    {
+      "category": "Programming",
+      "items": ["python", "Java", "C++"]
+    },
+    {
+      "category": "Data",
+      "items": ["Excel", "SQL", "Tableau"]
+    }
+  ],
+
+  "interests": [
+    {
+      "items": ["reading", "cycling", "chess"]
+    }
+  ],
+
+  "education": [
+    {
+      "school": "Test University",
+      "degree": "BSc",
+      "subject": "Computer Science",
+      "start_year": 2015,
+      "end_year": 2019,
+      "location": "Test City, TC",
+      "bullets": ["Graduated with honors", "Member of CS club"]
+    },
+    {
+      "school": "Example Institute",
+      "degree": "MSc",
+      "subject": "Data Science",
+      "start_year": 2019,
+      "end_year": 2021,
+      "location": "Example City, EC",
+      "bullets": ["Master thesis on AI", "Teaching assistant for ML course"]
+    }
+  ],
+
+  "professional_experience": [
+    {
+      "company": "TestCorp",
+      "role": "Software Engineer",
+      "start_date": "2020-01",
+      "end_date": "2021-12",
+      "location": "Test City, TC",
+      "bullets": ["Developed internal tools", "Improved CI/CD pipeline"],
+      "tags": ["python", "devops"]
+    },
+    {
+      "company": "ExampleTech",
+      "role": "Data Analyst",
+      "start_date": "2022-01",
+      "end_date": null,
+      "location": "Example City, EC",
+      "bullets": ["Built dashboards", "Analyzed customer data trends"],
+      "tags": ["sql", "tableau"]
+    }
+  ],
+
+  "projects": [
+    {
+      "name": "Test Project",
+      "bullets": ["Implemented dummy features for testing"],
+      "link": "https://github.com/test/project",
+      "tags": ["python", "testing"]
+    }
+  ],
+
+  "certificates": [
+    {
+      "name": "Test Certification",
+      "bullets": ["Completed dummy training program"],
+      "link": "https://example.com/cert"
+    }
+  ]
+}
