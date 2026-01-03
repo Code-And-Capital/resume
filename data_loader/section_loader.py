@@ -123,7 +123,6 @@ class HeaderDataSource(SectionDataSource):
         "email": str,
         "phone": str,
         "location": str,
-        "linkedin": str,
     }
 
     def validate(self, section: Any) -> None:

@@ -135,9 +135,15 @@ class LateX:
         """
         self.tex += f"\\{section_type}{{{title}}}\n"
 
-    def end_section(self) -> None:
-        """End of section is implicit in LaTeX; method exists for API consistency."""
-        pass
+    def end_section(self, section_type: str = "section") -> None:
+        """End of section.
+
+        Parameters
+        ----------
+        section_type : str, optional
+            LaTeX section type (default: 'section')
+        """
+        self.tex += f"\\end{{{section_type}}}\n"
 
     def vspace(self, space: float) -> None:
         """

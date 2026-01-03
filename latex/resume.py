@@ -8,7 +8,11 @@ from latex.resume_sections import (
     CertificatesSection,
 )
 from data_loader.json_loader import JSONDataSource
-from data_loader.section_loader import HeaderDataSource, SkillsDataSource
+from data_loader.section_loader import (
+    HeaderDataSource,
+    SkillsDataSource,
+    ExperienceDataSource,
+)
 
 
 class Resume(LateX):
@@ -39,16 +43,21 @@ class Resume(LateX):
 
     def create_header(self):
         self.header_data = HeaderDataSource(json_source=self.datasource)
-        self.header.add_full_header(**self.header_data.data)
+        self.header.add_header(**self.header_data.data)
 
     def create_skills(self):
         self.skill_data = SkillsDataSource(json_source=self.datasource)
         self.skills_sec.add_skills(self.skill_data.data)
 
-    def create_resume(self):
+    def create_experiences(self, select):
+        self.experience_data = ExperienceDataSource(json_source=self.datasource)
+        self.experience_sec.add_experiences(self.experience_data.data, select=select)
+
+    def create_resume(self, select_experiences=None):
         self.create_document_head()
         self.create_header()
         self.begin_document()
         self.create_skills()
+        self.create_experiences(select=select_experiences)
         self.end_document()
         self.create_pdf()
