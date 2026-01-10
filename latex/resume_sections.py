@@ -266,7 +266,7 @@ class SkillsSection:
 
         # Create table with bold left column and wrapping right column
         table = (
-            "\\begin{tabular}{ @{} >{\\bfseries}l @{\\hspace{6ex}} p{0.8\\textwidth} }"
+            "\\begin{tabular}{ @{} >{\\bfseries}l @{\\hspace{6ex}} p{0.75\\textwidth} }"
         )
         table += "".join(self._skill_row(s) for s in skills)
         table += "\n\\end{tabular}"
