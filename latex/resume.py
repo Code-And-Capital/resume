@@ -120,7 +120,7 @@ class Resume(LateX):
     # Sections that support selection of individual entries
     SECTIONS_WITH_SELECT = {"experience", "education", "projects", "certificates"}
 
-    def __init__(self, file_path: str) -> None:
+    def __init__(self, file_path: str, tex_name: str = "resume") -> None:
         """
         Initialize the Resume builder with data from a JSON file.
 
@@ -133,6 +133,8 @@ class Resume(LateX):
             Path to JSON file containing structured resume data.
             Expected structure includes top-level keys for each section:
             header, skills, experiences, education, projects, certificates, interests.
+        tex_name : str
+            Name of the LaTeX file (without extension)
 
         Raises
         ------
@@ -141,7 +143,7 @@ class Resume(LateX):
         JSONDecodeError
             If the file contains invalid JSON syntax.
         """
-        super().__init__(tex_name="resume")
+        super().__init__(tex_name=tex_name)
         self._file_path = file_path
 
         # Load resume data from JSON

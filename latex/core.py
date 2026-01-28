@@ -61,13 +61,13 @@ class LateX:
         template : str
             Name of the LaTeX document class (without .cls)
         """
-        cls_name = f"{template}.cls"
-        src = self.templates_folder / cls_name
-        dst = self.output_folder / cls_name
+        self.cls_name = f"{template}.cls"
+        src = self.templates_folder / self.cls_name
+        dst = self.output_folder / self.cls_name
 
         if not src.exists():
             raise FileNotFoundError(
-                f"Template '{cls_name}' not found in {self.templates_folder}"
+                f"Template '{self.cls_name}' not found in {self.templates_folder}"
             )
 
         # Copy template if not already present or if updated
@@ -223,6 +223,10 @@ class LateX:
                 path = self.output_folder / f"{self.tex_name}{ext}"
                 if path.exists():
                     path.unlink()
+
+            cls_path = self.output_folder / f"{self.cls_name}"
+            if cls_path.exists():
+                cls_path.unlink()
 
     # -----------------------------
     # Utilities
